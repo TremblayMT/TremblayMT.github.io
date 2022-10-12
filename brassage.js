@@ -1,29 +1,29 @@
 var carte = []
 function generation_cartes(){
+    var img = document.createElement("img");
+    let resultat = document.getElementById('resultat')
+    const COULEUR = ["d", "c", "h", "s"]
+    const FIGURES = ["A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 
-    const COULEUR = [d, c, h, s]
-    const FIGURES = [J, Q, K]
-
-    
-    for (let i = 0; i < len(COULEUR); i++){
-        carte.push("A"+COULEUR[i]+".gif");
-    }
-
-    for (let i = 2; i < 10; i++){
-        for (let j = 0; i < len(COULEUR); j++){
-            carte.push(i+COULEUR[i]+".gif");
+    for (let i = 0; i < COULEUR.length; i++){
+        for (let j = 0; j < FIGURES.length; j++){
+            carte.push(FIGURES[j]+COULEUR[i]+".gif");
         }
     }
-
-    for (let i = 0; i < len(FIGURES); i++){
-        for (let j = 0; i < len(COULEUR); j++){
-            carte.push(FIGURES[i]+COULEUR[i]+".gif");
-        }
+    for (let i = 0; i < carte.length; i++){
+        img.src = carte[i]
+        resultat.append(img);  
     }
-    
+   
 }  
+const myImage = new Image(100, 200);
+myImage.src = 'picture.jpg';
+document.body.appendChild(myImage);
 
-
+var img = document.createElement("img");
+img.src = "http://www.google.com/intl/en_com/images/logo_plain.png";
+var src = document.getElementById("res");
+src.appendChild(img);
 /*}
 function affichage(){
 
