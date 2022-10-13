@@ -1,6 +1,7 @@
 //LocaltStorage https://melvingeorge.me/blog/save-arrays-objects-to-localstorage-javascript user: Melvin George
 var carte = []
 var image = 0
+var compteur = '1'
 function generation_cartes(){
 
     const COULEUR = ["d", "c", "h", "s"]
@@ -21,20 +22,22 @@ function generation_cartes(){
         }
    
     } 
-
 }
 
 
-      
 function remove(){
+    console.log(compteur)
     let img = document.createElement("img");
-    let resultat = document.getElementById('resultat')
+    let resultat = document.getElementById(compteur)
     img.src = carte[image]
-    resultat.remove(img)   
-    
+    resultat.remove(img)
+
+
 }
+
 
 function brassage(){
+    
     const str = localStorage.getItem("array");
     const parsedArr = JSON.parse(str);
 
@@ -42,64 +45,33 @@ function brassage(){
     carte = []
     for (let i = 0; i < 26; i++){
         carte.push(parsedArr[i]);
-        carte.push(parsedArr[(25+i)]);
+        carte.push(parsedArr[(i+26)]);
         
-    }console.log(parsedArr.lenght)
+    }
     console.log(carte)
     remove()
+    compteur++
+
     for (let i = 0; i < carte.length; i++){
-        repeter_brassage()
+        repeter()
         image = image + 1
         if (i == carte.length - 1){
             image = 0
         }
     }
-}
-
+}   
+    const jsonArr = JSON.stringify(carte)
+    localStorage.setItem("array", jsonArr);
+    
 function repeter(){
     let img = document.createElement("img");
-    let resultat = document.getElementById('resultat')
+    let resultat = document.getElementById(compteur)
     img.src = carte[image]
     resultat.append(img)
-
-
-}
-function repeter_brassage(){
-    let img = document.createElement("img");
-    let intercoupe = document.getElementById('intercoupe')
-    img.src = carte[image]
-    intercoupe.append(img)
-}
-
-
-/*}
-
-def brassage(cartes):
-
-    moitie_deck = len(cartes) // 2
-
+    console.log(compteur)
     
-    nouveau_paquet = []
-    
-    paquet_tmp_1 = cartes[:moitie_deck]
-    paquet_tmp_2 = cartes[moitie_deck:]
 
-    for i in range(moitie_deck):
-        nouveau_paquet.append(paquet_tmp_1[i])
-        nouveau_paquet.append(paquet_tmp_2[i])
 
-function affichage(){
-
-    row_size = len(cartes) // 4
-    for i, carte in enumerate(cartes):
-        
-        print(f"{carte:<4}", end="")
-        if(i%row_size == row_size-1):
-            print()
-
-    for i in range(4):
-        for j in range(row_size):
-            print(cartes[i*row_size+j], end="\t")
-        print()
 }
- '*/
+
+
